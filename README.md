@@ -145,3 +145,62 @@ Car car2 = new Car(car1); // Using the copy constructor
 ```
 
 These are some advanced features and patterns related to constructors in Java. They provide flexibility and help in creating more versatile and convenient classes.
+
+## 5. "Constructors" in inheritance
+
+In Java, constructors play a crucial role in initializing objects. When it comes to inheritance, constructors are also inherited, but there are some important things to understand.
+
+Let's say you have a superclass called Vehicle:
+
+```java
+public class Vehicle {
+    private String brand;
+
+    public Vehicle(String brand) {
+        this.brand = brand;
+    }
+
+    public void start() {
+        System.out.println("Vehicle is starting.");
+    }
+}
+```
+
+Now, you want to create a subclass called Car that extends Vehicle:
+
+```java
+public class Car extends Vehicle {
+    private int numberOfDoors;
+
+    public Car(String brand, int numberOfDoors) {
+        // Call the constructor of the superclass (Vehicle)
+        super(brand);
+        
+        // Initialize the subclass-specific variable
+        this.numberOfDoors = numberOfDoors;
+    }
+
+    public void drive() {
+        System.out.println("Car is driving.");
+    }
+}
+```
+
+Vehicle class: It has a constructor that takes a brand parameter and initializes the brand field.
+
+Car class: It extends Vehicle. In its constructor, it first calls the constructor of the superclass (super(brand)), ensuring that the brand is initialized in the Vehicle part of the object. 
+Then, it initializes its own field, numberOfDoors.
+
+Now, when you create a Car object, you need to provide values for both brand and numberOfDoors:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car("Toyota", 4);
+        myCar.start(); // This method is inherited from Vehicle
+        myCar.drive(); // This is a method specific to Car
+    }
+}
+```
+
+This example demonstrates how constructors in the superclass and subclass work together during the creation of objects in an inheritance hierarchy. The super(brand) call in the Car constructor ensures that the initialization code in the Vehicle constructor is executed before the Car constructor continues with its own initialization.
